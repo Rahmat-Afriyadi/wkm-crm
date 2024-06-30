@@ -10,4 +10,7 @@ class Faktur extends Model
     use HasFactory;
 
     protected $table = "transaksi";
+    // protected $primaryKey = 'no_mesin';
+    public $timestamps = false;
+    protected $guarded = ['no_mesin'];
 }

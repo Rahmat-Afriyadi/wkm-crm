@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faktur;
 use App\Models\Kurir;
+use App\Models\StockCard;
 use Illuminate\Http\Request;
 
 class FakturController extends Controller
@@ -14,7 +15,8 @@ class FakturController extends Controller
     public function index()
     {
         //
-        $trxs = Faktur::all();
+        $trxs = Faktur::whereNull("card_1")->get(['no_mesin', 'tgl_byr', 'nama_cs']);
+        // return $trxs;
         return view("table", compact("trxs"));
     }
 
@@ -63,6 +65,13 @@ class FakturController extends Controller
         $request->validate([
             'no_kartu' => 'required',
             'kurir' => 'required'
+        ]);
+
+        $kartu = StockCard::where("no_kartu", $request->input("no_kartu"))->first();
+        Faktur::where("no_mesin", $id)->update([
+            'card_1' => $kartu->no_kartu,
+            'tgl_expired' => $kartu->tgl_expired,
+            'kode_kurir' => $request->input('kurir')
         ]);
 
         return redirect(route('table-barcode-bawa'));
