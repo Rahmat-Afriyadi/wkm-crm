@@ -39,6 +39,8 @@
                                 <p>Baru Vendor</p>
                             @elseif ($item->status == 1)
                                 <p>Terpakai</p>
+                            @elseif ($item->status == 2)
+                                <p>Sudah Bayar</p>
                             @else
                                 <p>anomali</p>
                             @endif

@@ -143,7 +143,7 @@ class FakturController extends Controller
         $faktur->sts_kartu = 3;
         $faktur->save();
 
-        $kartu->status = 3;
+        $kartu->status = 2;
         $kartu->save();
 
         return redirect(route('faktur.index_bayar'));
