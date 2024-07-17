@@ -23,7 +23,7 @@ if (!function_exists('findNoKartu')) {
     function findNoKartu($no_kartu)
     {
         $sept = str_split($no_kartu, 4);
-        $tgl_expired = substr($sept[4], 0, 2) . "-" . substr($sept[4], 2, 2) . "-01";
+        $tgl_expired = "20" . substr($sept[4], 0, 2) . "-" . substr($sept[4], 2, 2) . "-01";
         return ["no_kartu" => implode(" ", array_slice($sept, 0, 4)), "tgl_expired" => $tgl_expired];
     }
 }

@@ -140,6 +140,7 @@ class FakturController extends Controller
 
         $faktur->tgl_byr_cs = $request->input("tgl_byr_cs");
         $faktur->sts_bayar = 'S';
+        $faktur->sts_kartu = 3;
         $faktur->save();
 
         $kartu->status = 3;
