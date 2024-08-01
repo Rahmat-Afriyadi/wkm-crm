@@ -10,16 +10,10 @@
                             Nomor Mesin
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Tanggal Janji Bayar
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Nama Customer
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Alamat Tujuan
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nomor Kartu
+                            Alasan Check  2
                         </th>
                     </tr>
                 </thead>
@@ -29,24 +23,11 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{$item->no_mesin}}
                         </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{$item->tgl_byr}}
-                        </th>
                         <td class="px-6 py-4">
                             {{$item->nama_cs}}
                         </td>
                         <td class="px-6 py-4">
-                            @if ($item->kirim_ke ==1)
-                                <p>rumah</p>
-                            @elseif ($item->kirim_ke == 2)
-                                <p>kantor</p>
-                            @else
-                                <p>Ahhas</p>
-                                
-                            @endif
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$item->card_1}}
+                            {{$item->alasan_check_2}}
                         </td>
                     </tr>
                     @endforeach

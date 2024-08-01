@@ -41,8 +41,8 @@
                                 <p>Terpakai</p>
                             @elseif ($item->status == 2)
                                 <p>Sudah Bayar</p>
-                            @else
-                                <p>anomali</p>
+                            @elseif ($item->status == 3)
+                                <p>Kembali</p>
                             @endif
                         </td>
                         <td class="px-6 py-4">

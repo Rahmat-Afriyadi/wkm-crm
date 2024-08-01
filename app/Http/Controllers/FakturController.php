@@ -37,6 +37,18 @@ class FakturController extends Controller
         return view("faktur.bayar", compact("trxs"));
     }
 
+    public function index_kembali()
+    {
+        $trxs = Faktur::where("sts_kartu", 4)->get(['no_mesin', 'nama_cs', 'alsn_blm_byr']);
+        return view("faktur.kembali.kembali", compact("trxs"));
+    }
+
+    public function index_check()
+    {
+        $trxs = Faktur::whereNotNull("alasan_check_2")->get(['no_mesin', 'nama_cs', 'alasan_check_2']);
+        return view("faktur.check.check", compact("trxs"));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -66,6 +78,79 @@ class FakturController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    public function detail_barcode_kembali(string $id)
+    {
+        //
+        $i = Faktur::where('no_mesin', $id)->first();
+        $kurir = Kurir::all();
+        return view("faktur.kembali.detail-barcode-kembali", compact("kurir", "i"));
+    }
+
+    public function detail_post_barcode_kembali(Request $request)
+    {
+        //
+        $i = Faktur::where('card_1', $request->input("no_kartu"))->first();
+        $kurir = Kurir::all();
+        return view("faktur.kembali.detail-barcode-kembali", compact("kurir", "i"));
+    }
+
+    public function form_kembali()
+    {
+        //
+        return view("faktur.kembali.form-kembali");
+    }
+    public function update_kartu_kembali(Request $request)
+    {
+        //
+        $faktur = Faktur::where("no_mesin", $request->input("no_mesin"))->first();
+
+        $kartu = StockCard::where("no_kartu", $faktur->card_1)->first();
+        $kartu->status = 3;
+        $kartu->save();
+
+        $faktur->card_2 = $faktur->card_1;
+        $faktur->card_1 = null;
+        $faktur->sts_kartu = 4;
+        $faktur->alsn_blm_byr = $request->input("alasan");
+        $faktur->save();
+
+
+        return redirect()->route("faktur.index_kembali");
+    }
+
+    public function detail_check(string $id)
+    {
+        //
+        $i = Faktur::where('no_mesin', $id)->first();
+        $kurir = Kurir::all();
+        return view("faktur.kembali.detail-barcode-kembali", compact("kurir", "i"));
+    }
+
+    public function detail_post_barcode_check(Request $request)
+    {
+        //
+        $i = Faktur::where('no_mesin', $request->input("no_mesin"))->where("sts_kartu", 4)->first();
+        $kurir = Kurir::all();
+        return view("faktur.check.detail-barcode-check", compact("kurir", "i"));
+    }
+
+    public function form_check()
+    {
+        //
+        return view("faktur.check.form-check");
+    }
+    public function update_check_alasan_2(Request $request)
+    {
+        //
+        $faktur = Faktur::where("no_mesin", $request->input("no_mesin"))->first();
+
+        $faktur->alasan_check_2 = $request->input("check_alasan_2");
+        $faktur->save();
+
+
+        return redirect()->route("faktur.index_check");
+    }
+
     public function detail_barcode_bawa(string $id)
     {
         //
@@ -74,9 +159,6 @@ class FakturController extends Controller
         return view("faktur.detail-barcode-bawa", compact("kurir", "i"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update_barcode_bawa(Request $request, string $id)
     {
         $request->validate([

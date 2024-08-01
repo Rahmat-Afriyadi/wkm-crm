@@ -21,8 +21,13 @@
                     <div class="ml-10 flex items-baseline space-x-4">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="/faktur/barcode-bawa" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Barcode Bawa</a>
+                    <a href="/faktur/pa-barcode-bawa" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">Pra Barcode Bawa</a>
                     <a href="/stock-card" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Stock Card</a>
-                    </div>
+                    <a href="/faktur/bayar" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Bayar</a>
+                    <a href="/faktur/kembali/form-detail" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Barcode Kembali</a>
+                    <a href="/faktur/check/form-detail" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Check Alasan 2</a>
+                    
+                </div>
                 </div>
                 </div>
                 <div class="hidden md:block">

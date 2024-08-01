@@ -14,4 +14,9 @@ class Faktur extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $guarded = ['no_mesin'];
+
+    public function kurir()
+    {
+        return $this->belongsTo(Kurir::class, "kode_kurir", "kode_kurir");
+    }
 }
