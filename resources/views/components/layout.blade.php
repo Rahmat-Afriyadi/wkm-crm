@@ -10,6 +10,8 @@
     </head>
     <body class="h-full">
     <div class="min-h-full">
+{{-- @include('layouts.navigation') --}}
+
         <nav class="bg-gray-800" x-data="{ isOpen: false }">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
@@ -72,7 +74,18 @@
                         <!-- Active: "bg-gray-100", Not Active: "" -->
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                        {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a> --}}
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a onclick="event.preventDefault();
+                                                this.closest('form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            {{-- <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link> --}}
+                        </form>
+                   
                     </div>
                     </div>
                 </div>
@@ -138,6 +151,8 @@
             </div>
             </div>
         </nav>
+
+        
 
         <header class="bg-white shadow">
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">

@@ -89,7 +89,8 @@ class FakturController extends Controller
     public function detail_post_barcode_kembali(Request $request)
     {
         //
-        $i = Faktur::where('card_1', $request->input("no_kartu"))->first();
+        $kartuHelper = findNoKartu($request->input("no_kartu"));
+        $i = Faktur::where('card_1', $kartuHelper["no_kartu"])->first();
         $kurir = Kurir::all();
         return view("faktur.kembali.detail-barcode-kembali", compact("kurir", "i"));
     }
@@ -188,7 +189,7 @@ class FakturController extends Controller
             'tgl_byr' => $request->input("tgl_bayar")
         ]);
 
-        return redirect(route('faktur.index_barcode_bawa'));
+        return redirect(route('dashboard'));
     }
 
     public function create_bayar(Request $request)

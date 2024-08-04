@@ -36,6 +36,6 @@ class StockCardController extends Controller
             'tgl_expired' => $dataKartu["tgl_expired"]
         ]);
 
-        return redirect(route('faktur.index_bayar'));
+        return redirect(route('stock_card.index'));
     }
 }

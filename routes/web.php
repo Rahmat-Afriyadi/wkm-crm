@@ -4,14 +4,16 @@ use App\Http\Controllers\FakturController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockCardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthenticatedSessionController::class, 'create']);
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -21,7 +23,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/faktur/barcode-bawa', [FakturController::class, 'index_barcode_bawa'])->name('faktur.index_barcode_bawa');
+    Route::get('/faktur/barcode-bawa', [FakturController::class, 'index_barcode_bawa'])->name('dashboard');
     Route::get('/faktur/barcode-bawa/{id}', [FakturController::class, 'detail_barcode_bawa'])->name('faktur.barcode_bawa');
     Route::put('/faktur/barcode-bawa/{id}', [FakturController::class, 'update_barcode_bawa'])->name('faktur.update_barcode_bawa');
 
