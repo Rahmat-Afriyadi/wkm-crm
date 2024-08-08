@@ -15,7 +15,7 @@ class FakturController extends Controller
      */
     public function index_tanda_terima()
     {
-        $trxs = Faktur::where("sts_kartu", 1)->get(['no_mesin', 'tgl_byr', 'nama_cs']);
+        $trxs = Faktur::where("sts_kartu", 1)->get(['no_mesin', 'tgl_byr', 'nama_cs', 'kirim_ke']);
         return view("faktur.barcode-bawa", compact("trxs"));
     }
 
@@ -27,25 +27,25 @@ class FakturController extends Controller
 
     public function index_pa_barcode_bawa()
     {
-        $trxs = Faktur::whereNotNull("card_1")->where("sts_kartu", 2)->get(['no_mesin', 'tgl_byr', 'nama_cs', 'card_1']);
+        $trxs = Faktur::whereNotNull("card_1")->where("sts_kartu", 2)->get(['no_mesin', 'tgl_byr', 'nama_cs', 'card_1', 'kirim_ke']);
         return view("faktur.pa-barcode-bawa", compact("trxs"));
     }
 
     public function index_bayar()
     {
-        $trxs = Faktur::whereNotNull("card_1")->where("sts_kartu", 3)->where("sts_bayar", "S")->get(['no_mesin', 'tgl_byr', 'nama_cs', 'card_1', 'tgl_byr_cs']);
+        $trxs = Faktur::whereNotNull("card_1")->where("sts_kartu", 3)->where("sts_bayar", "S")->get(['no_mesin', 'tgl_byr', 'nama_cs', 'card_1', 'tgl_byr_cs', 'kirim_ke']);
         return view("faktur.bayar", compact("trxs"));
     }
 
     public function index_kembali()
     {
-        $trxs = Faktur::where("sts_kartu", 4)->get(['no_mesin', 'nama_cs', 'alsn_blm_byr']);
+        $trxs = Faktur::where("sts_kartu", 4)->get(['no_mesin', 'nama_cs', 'alsn_blm_byr', 'kirim_ke']);
         return view("faktur.kembali.kembali", compact("trxs"));
     }
 
     public function index_check()
     {
-        $trxs = Faktur::whereNotNull("alasan_check_2")->get(['no_mesin', 'nama_cs', 'alasan_check_2']);
+        $trxs = Faktur::whereNotNull("alasan_check_2")->get(['no_mesin', 'nama_cs', 'alasan_check_2', 'kirim_ke']);
         return view("faktur.check.check", compact("trxs"));
     }
 
