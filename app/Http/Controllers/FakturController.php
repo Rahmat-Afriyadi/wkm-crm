@@ -21,7 +21,7 @@ class FakturController extends Controller
 
     public function index_barcode_bawa()
     {
-        $trxs = Faktur::whereNull("card_1")->where("sts_kartu", 1)->get(['no_mesin', 'tgl_byr', 'nama_cs']);
+        $trxs = Faktur::whereNull("card_1")->where("sts_kartu", 1)->get(['no_mesin', 'tgl_byr', 'nama_cs', 'kirim_ke']);
         return view("faktur.barcode-bawa", compact("trxs"));
     }
 
@@ -137,7 +137,6 @@ class FakturController extends Controller
 
     public function form_check()
     {
-        //
         return view("faktur.check.form-check");
     }
     public function update_check_alasan_2(Request $request)
@@ -174,7 +173,7 @@ class FakturController extends Controller
             return back()->withErrors(['error' => 'Stock Card Tidak ditemukan']);
         }
 
-        if ($kartu->status != 0) {
+        if (!$kartu->status != 0 || $kartu->status != 3) {
             return back()->withErrors(['error' => 'Stock Card Sudah dipakai']);
         }
 

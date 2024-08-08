@@ -36,7 +36,7 @@
                             {{$item->nama_cs}}
                         </td>
                         <td class="px-6 py-4">
-                            @if ($item->kirim_ke ==1)
+                            @if ($item->kirim_ke == 1)
                                 <p>rumah</p>
                             @elseif ($item->kirim_ke == 2)
                                 <p>kantor</p>

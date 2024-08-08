@@ -32,11 +32,10 @@
                         <td class="px-6 py-4">
                             @if ($item->kirim_ke ==1)
                                 <p>rumah</p>
-                                @elseif ($item->kirim_ke == 2)
-                <p>kantor</p>
-            @else
+                            @elseif ($item->kirim_ke == 2)
+                                <p>kantor</p>
+                            @else
                                 <p>Ahhas</p>
-                                
                             @endif
                             {{-- {{$item->kirim_ke == 1 ? "Rumah" : $item->kirim_ke == 2 ? "Kantor" : $item->kirim_ke == 3 ? "AHHAS" : ""}} --}}
                         </td>
