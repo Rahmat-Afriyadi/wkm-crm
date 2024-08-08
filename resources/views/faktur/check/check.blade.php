@@ -13,6 +13,9 @@
                             Nama Customer
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Alasan Check  1
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Alasan Check  2
                         </th>
                     </tr>
@@ -25,6 +28,9 @@
                         </th>
                         <td class="px-6 py-4">
                             {{$item->nama_cs}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$item->alsn_blm_byr}}
                         </td>
                         <td class="px-6 py-4">
                             {{$item->alasan_check_2}}

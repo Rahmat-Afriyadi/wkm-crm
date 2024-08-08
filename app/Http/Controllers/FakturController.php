@@ -45,7 +45,7 @@ class FakturController extends Controller
 
     public function index_check()
     {
-        $trxs = Faktur::whereNotNull("alasan_check_2")->where("sts_kartu", 4)->get(['no_mesin', 'nama_cs', 'alasan_check_2', 'kirim_ke']);
+        $trxs = Faktur::whereNotNull("alasan_check_2")->where("sts_kartu", 4)->get(['no_mesin', 'nama_cs', 'alsn_blm_byr', 'alasan_check_2', 'kirim_ke']);
         return view("faktur.check.check", compact("trxs"));
     }
 
