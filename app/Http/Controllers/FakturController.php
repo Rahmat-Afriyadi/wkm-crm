@@ -173,7 +173,7 @@ class FakturController extends Controller
             return back()->withErrors(['error' => 'Stock Card Tidak ditemukan']);
         }
 
-        if (!$kartu->status != 0 && $kartu->status != 3) {
+        if ($kartu->status != 0 && $kartu->status != 3) {
             return back()->withErrors(['error' => 'Stock Card Sudah dipakai']);
         }
 
